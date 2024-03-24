@@ -1,4 +1,4 @@
-alert("Welcome to yubin info page!")
+confirm("Would you like to enter?");
 const mainbox = document.getElementById("mainbox");
 function darkmode() {
     mainbox.style.backgroundColor = '#262626';
