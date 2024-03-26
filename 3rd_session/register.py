@@ -5,7 +5,7 @@ print('='*30)
 
 while True:
     print('회원가입을 진행하시겠습니까?')
-    print('y: 진행      n: 취소')
+    print('y: 진행          n: 취소')
     answer = input('>> ').lower()
     if answer == 'y':
         print('='*30)
@@ -47,4 +47,27 @@ while True:
             print("생년월일은 여섯 자리로 입력해주세요.")
     
     email = input("이메일: ")  # 이메일 입력
-    
+
+#3
+    user['username'] = username
+    user['password'] = pwd
+    user['name'] = name
+    user['birth'] = birth
+    user['email'] = email
+
+    users.append(user)
+    print(users)
+
+    print('='*30)
+    print(user['name'], "님, 가입을 환영합니다!")
+    print('='*30)
+    print("회원가입을 추가로 진행하시겠습니까?")
+    print("y: 진행          n: 취소")
+    answer = input('>> ').lower()
+
+    if answer == 'y':
+        pass
+    elif answer == 'n':
+        exit()
+    else:
+        exit()
