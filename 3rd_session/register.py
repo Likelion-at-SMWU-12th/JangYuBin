@@ -21,5 +21,30 @@ while True:
         print("'y' 또는 'n'를 입력해주세요.")
 
 
+#2
+users = []
 
+while True:
+    user = {}
+
+    username = input('ID: ')  # 아이디 입력
+
+    while True:  # 비밀번호 입력
+        pwd = input('비밀번호: ')
+        pwd2 = input('비밀번호 확인: ')
+        if pwd == pwd2:
+            break
+        else:
+            print("비밀번호가 일치하지 않습니다.")
+
+    name = input('이름: ')  # 이름 입력
+
+    while True:  # 생일 입력
+        birth = input("생년월일(6자리): ")
+        if len(birth) == 6:
+            break
+        else:
+            print("생년월일은 여섯 자리로 입력해주세요.")
+    
+    email = input("이메일: ")  # 이메일 입력
     
