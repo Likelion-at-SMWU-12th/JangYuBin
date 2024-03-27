@@ -1,7 +1,7 @@
 import requests
 import json
 
-city = "Seoul"
+city = "Paris"
 apikey = "324a3b3df9a342b16a31ad159f91ef92"
 lang = "kr"
 
