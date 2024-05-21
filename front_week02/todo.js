@@ -1,6 +1,8 @@
 const todoForm = document.querySelector("#todoForm");
 const todoInput = todoForm.querySelector("#todoInput");
+const addButton = todoForm.querySelector("#addButton");
 const todoList = document.querySelector("#todoList");
+
 const todoArr = [];
 
 function deleteTodo(event) {
@@ -29,4 +31,7 @@ function handleTodoForm(event) {
   paintTodo(newTodo);
 }
 
-todoForm.addEventListener("submit", handleTodoForm);
+todoForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+addButton.addEventListener("click", handleTodoForm);
