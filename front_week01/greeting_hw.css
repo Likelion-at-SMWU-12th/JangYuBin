@@ -1,0 +1,11 @@
+.hidden{
+    display: none;
+}
+
+body{
+    background-color: beige;
+}
+
+.orange{
+    background-color: orange;
+}
