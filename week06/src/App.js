@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<CommentPage />} />
         <Route path="/write" element={<WritePage />} />
+        <Route path="/modify/:id" element={<WritePage mode={"modify"} />} />
         <Route path="/comment/:id" element={<DetailPage />} />
       </Routes>
     </Wrapper>
