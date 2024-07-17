@@ -21,6 +21,20 @@ const DetailPage = () => {
       });
   };
 
+  const deleteDetail = () => {
+    axios
+      .delete(`http://127.0.0.1:8000/entries/${id}/`)
+      .then((response) => {
+        console.log(response);
+        alert("삭제되었습니다.");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("삭제에 실패했습니다.");
+      });
+  };
+
   useEffect(() => {
     getDetail();
     // eslint-disable-next-line
@@ -36,7 +50,7 @@ const DetailPage = () => {
           <Comment>{detail.comment}</Comment>
           <BtnLine>
             <Button txt={"수정"} fontSize={"30px"} />
-            <Button txt={"삭제"} fontSize={"30px"} />
+            <Button txt={"삭제"} fontSize={"30px"} onBtnClick={deleteDetail} />
           </BtnLine>
         </DetailDiv>
       </DetailWrapper>
