@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-const WritePage = () => {
+const WritePage = ({ mode }) => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [author, setAuthor] = useState("");
   const [comment, setComment] = useState("");
 
@@ -33,6 +34,43 @@ const WritePage = () => {
       });
   };
 
+  const getDetail = () => {
+    axios
+      .get(`http://127.0.0.1:8000/entries/${id}/`)
+      .then((response) => {
+        console.log(response);
+        setAuthor(response.data.author);
+        setComment(response.data.comment);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    if (mode === "modify") {
+      getDetail();
+      // eslint-disable-next-line
+    }
+  }, []);
+
+  const modifyComment = () => {
+    axios
+      .put(`http://127.0.0.1:8000/entries/${id}/`, {
+        author: author,
+        comment: comment,
+      })
+      .then((response) => {
+        console.log(response);
+        alert("수정되었습니다.");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("수정에 실패했습니다.");
+      });
+  };
+
   return (
     <Wrapper>
       <InputTitle>이름</InputTitle>
@@ -48,7 +86,11 @@ const WritePage = () => {
         onChange={onChangeComment}
       />
       <BtnDiv>
-        <Button txt={"작성하기"} onBtnClick={postComment} />
+        {mode === "modify" ? (
+          <Button txt={"수정하기"} onBtnClick={modifyComment} />
+        ) : (
+          <Button txt={"작성하기"} onBtnClick={postComment} />
+        )}
       </BtnDiv>
     </Wrapper>
   );
