@@ -1,6 +1,6 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { signUp } from "../api";
+import { getUserInfo, signUp } from "../api";
 
 export const useSignUp = ({ username, password }) => {
   const navigate = useNavigate();
@@ -16,5 +16,14 @@ export const useSignUp = ({ username, password }) => {
       console.log("회원가입 요청이 전달되었습니다.");
       navigate("/myPage");
     },
+  });
+};
+
+export const useGetPost = (userId) => {
+  return useQuery({
+    queryKey: ["userInfo", userId],
+    queryFn: () => getUserInfo(userId),
+    staleTime: 30000,
+    cacheTime: 300000,
   });
 };
