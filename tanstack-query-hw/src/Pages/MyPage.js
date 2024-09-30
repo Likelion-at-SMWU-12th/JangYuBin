@@ -1,9 +1,9 @@
 import React from "react";
-import { useDeleteUser, useGetPost } from "../queries";
+import { useDeleteUser, useGetUserInfo } from "../queries";
 
 const MyPage = () => {
   const userId = 123;
-  const { data, isLoading, isError } = useGetPost(userId);
+  const { data, isLoading, isError } = useGetUserInfo(userId);
   const { mutate } = useDeleteUser(userId);
 
   const userInfo = data ?? {};
