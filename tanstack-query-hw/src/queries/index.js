@@ -1,6 +1,6 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { getUserInfo, signUp } from "../api";
+import { deleteUser, getUserInfo, signUp } from "../api";
 
 export const useSignUp = ({ username, password }) => {
   const navigate = useNavigate();
@@ -25,5 +25,21 @@ export const useGetPost = (userId) => {
     queryFn: () => getUserInfo(userId),
     staleTime: 30000,
     cacheTime: 300000,
+  });
+};
+
+export const useDeleteUser = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ userId }) => deleteUser(userId),
+    onSuccess: () => {
+      alert("삭제 성공");
+      queryClient.invalidateQueries("myPage");
+    },
+    onSettled: () => {
+      console.log("삭제 요청이 전달되었습니다.");
+      window.location.reload();
+    },
   });
 };
