@@ -9,8 +9,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          {/* 로그인 창 */}
           <Route path="/" element={<Login />} />
+          {/* Redirect URI */}
           <Route path="/oauth2" element={<Redirection />} />
+          {/* 결과 창 */}
           <Route path="/greeting" element={<Greeting />} />
         </Routes>
       </BrowserRouter>
