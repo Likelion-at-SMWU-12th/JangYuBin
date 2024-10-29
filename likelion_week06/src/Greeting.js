@@ -5,6 +5,8 @@ const Greeting = () => {
   const [profileImg, setProfileImg] = useState();
 
   useEffect(() => {
+    // 5. access token으로 사용자 정보 가져오기
+    // https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#req-user-info
     const accessToken = localStorage.getItem("accessToken");
     fetch(`https://kapi.kakao.com/v2/user/me`, {
       method: "GET",
